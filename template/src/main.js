@@ -1,4 +1,4 @@
-import { loadPage, renderTrending } from "./events/navigation-events.js";
+import { loadPage, renderTrending, renderGifByID } from "./events/navigation-events.js";
 
 
 
@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target.classList.contains('nav-link')) {
             await loadPage(event.target.getAttribute('data-page'));
         };
+
+        if(event.target.tagName === "IMG" && event.target.classList.contains('gifs')) {
+            await renderGifByID(event.target.getAttribute('id'));
+        }
 
     });
 

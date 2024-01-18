@@ -1,12 +1,14 @@
 import { q, setActiveNav } from "./helpers.js";
-import { CONTAINER_SELECTOR, TRENDING_CONTENT_SELECTOR, HOME, TRENDING } from "../common/constants.js";
-import { loadTrendingGifs } from "../requests/request-service.js";
+import { CONTAINER_SELECTOR, TRENDING_CONTENT_SELECTOR, HOME, TRENDING} from "../common/constants.js";
+import { loadTrendingGifs, loadGifByID } from "../requests/request-service.js";
 import { toGifsNumSelectorView, toTrendingView } from "../views/ternding-view.js";
+import { toDetailedGifView } from "../views/detailed-gif-view.js";
 
 export {
     loadPage,
     renderTrending,
-    renderGifsNumSelector
+    renderGifsNumSelector,
+    renderGifByID
 }
 
 
@@ -21,8 +23,6 @@ const loadPage = async (page = '') => {
             renderGifsNumSelector();
             await renderTrending();
             break;
-
-        // case SEARCH
 
     };
 
@@ -40,5 +40,11 @@ const renderTrending = async (limit = 10, offset = 0) => {
 
 const renderGifsNumSelector =  () => {
     q(CONTAINER_SELECTOR).innerHTML = toGifsNumSelectorView();
+}
+
+const renderGifByID = async (id) => {
+    const gifByID = await loadGifByID(id);
+
+    q(CONTAINER_SELECTOR).innerHTML = toDetailedGifView(gifByID);
 }
 
