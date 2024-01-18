@@ -13,6 +13,7 @@ return `
 <h2>Uploaded by:</h2>
 <img class="user-avatar" src="${gifObject.user.avatar_url}">
 <a href="${gifObject.user.profile_url}" class="username-link" target="_blank">${gifObject.user.username}</a>
+<button class="share-button" data-page="${gifObject.id}">Share</button>
 </div>
 `
 }

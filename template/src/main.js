@@ -16,6 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
             await renderGifByID(event.target.getAttribute('id'));
         }
 
+        if(event.target.tagName === "BUTTON" && event.target.classList.contains('share-button')) {
+            const gifID = event.target.getAttribute('data-page');
+            const url = `https://i.giphy.com/${gifID}.webp`
+            navigator.clipboard.writeText(url)
+            .then(() => {
+                alert('URL copied successfully!');
+            })
+            .catch(() => {
+                alert('Error copying URL to clipboard');
+            })
+        }
+
     });
 
   
