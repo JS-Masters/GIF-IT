@@ -3,7 +3,7 @@ export {
     HOME,
     TRENDING,
     CONTAINER_SELECTOR,
-    TRENDING_CONTENT_SELECTOR
+    CONTENT_SELECTOR
 };
 
 
@@ -14,6 +14,5 @@ const TRENDING = 'trending';
 
 const CONTAINER_SELECTOR = '#container';
 
-const TRENDING_CONTENT_SELECTOR = '#trending-content';
-
+const CONTENT_SELECTOR = '#content';
 

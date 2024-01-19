@@ -12,3 +12,52 @@
   display: inline-block;
   vertical-align: top;
 }
+
+/* Search container */
+
+.search-form {
+  width: 500px;
+  height: 60px;
+  position: relative;
+}
+
+.search-form input {
+  background-color: red;
+  padding-left: 25px; 
+  width: 95%;
+  height: 95%;
+  display: block;
+  border-radius: 30px;
+  font-size: 30px;
+  outline: none;
+  border: none;
+}
+
+.search-form button {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 100px;
+  height: 98%;
+  background: linear-gradient(90deg, black, grey);
+  color: white;
+  border-radius: 30px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.magnifier{
+  fill: red;
+}
+
+
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
