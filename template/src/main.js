@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Search bar
         if (event.target.tagName === 'BUTTON' && event.target.id === 'search-btn') {
             const searchInput = q('#search-input');
+            event.preventDefault();
+
+            if (!searchInput.value) {
+                return alert('Invalid search value!');
+            };
 
             const query = searchInput.value
                 .split(' ')
@@ -33,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .join('+');
 
             await renderSearchGifs(query);
-
             addQueryToStorage(query);
+
             searchInput.value = '';
         };
 
@@ -72,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (event.target.id === 'gifs-number-selector') {
             if (event.target.classList.contains('search')) {
-// console.log(getQueryStorage());
-                await renderSearchGifs((getQueryStorage().join('')),(+event.target.value))
+                // console.log(getQueryStorage());
+                await renderSearchGifs((getQueryStorage().join('')), (+event.target.value))
             }
             if (event.target.classList.contains('trending')) {
                 await renderTrending(+event.target.value);
