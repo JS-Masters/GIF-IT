@@ -2,6 +2,7 @@ const API_KEY = 'Y2dRM6tx3BMNPo0bSuIVSD2N2zIxCMm8';
 
 export const HOME = 'home';
 export const TRENDING = 'trending';
+export const UPLOADED = 'uploaded';
 export const FAVORITES = 'favorites';
 
 export const CONTAINER_SELECTOR = '#container';

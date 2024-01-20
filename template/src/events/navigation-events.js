@@ -1,11 +1,13 @@
 import { q, setActiveNav } from "./helpers.js";
-import { CONTAINER_SELECTOR, CONTENT_SELECTOR, FAVORITES, HOME, TRENDING } from "../common/constants.js";
-import { loadTrendingGifs, loadGifByID, loadGifsByIDs, loadRandomGif } from "../requests/request-service.js";
+import { CONTAINER_SELECTOR, CONTENT_SELECTOR, FAVORITES, HOME, TRENDING, UPLOADED } from "../common/constants.js";
+import { loadTrendingGifs, loadGifByID, loadGifsByIDs, loadRandomGif, loadUploadedGIFs } from "../requests/request-service.js";
 import { toTrendingView } from "../views/ternding-view.js";
 import { toGifsNumSelectorView } from "../views/gifs-num-selector-view.js";
 import { getFavorites } from "../data/favorites.js";
 import { toFavoritesView } from "../views/favorites-view.js";
 import { toDetailedGifView, toGifSimpleView } from "../views/gif-view.js";
+import { getUploadedStorage } from "../data/uploaded.js";
+import { toUploadedGIFsView } from "../views/uploaded-gifs-view.js";
 
 
 
@@ -24,6 +26,11 @@ export const loadPage = async (page = '') => {
         case FAVORITES:
             setActiveNav(FAVORITES);
             await renderFavorites();
+            break;
+
+        case UPLOADED:
+            // setActiveNav(UPLOADED);
+            await renderUploadedGIFs();
             break;
 
     };
@@ -68,3 +75,18 @@ export const renderFavorites = async () => {
         q(CONTAINER_SELECTOR).innerHTML = toGifSimpleView(randomGif);
     };
 };
+
+const renderUploadedGIFs = async () => {
+
+    const uploadedGIFsIDs = getUploadedStorage().filter((e) => e);
+
+    if (uploadedGIFsIDs.length > 0) {
+        const uploadedGIFsIDsAsString = uploadedGIFsIDs.join(',');
+        const uploadedGIFsArr = await loadUploadedGIFs(uploadedGIFsIDsAsString);
+
+        q(CONTAINER_SELECTOR).innerHTML = toUploadedGIFsView(uploadedGIFsArr);
+    } else {
+        alert('You don\'t have uploaded GIFs yet...');
+    }
+
+}

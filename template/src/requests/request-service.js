@@ -44,3 +44,10 @@ export const loadRandomGif = async () => {
 
     return result.data;
 };
+
+export const loadUploadedGIFs = async (IDs) => {
+    const response = await fetch(getGifsByIDs(IDs));
+    const result = await response.json();
+
+    return result.data;
+}

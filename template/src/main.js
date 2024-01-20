@@ -3,6 +3,7 @@ import { loadPage, renderGifDetails, renderTrending } from "./events/navigation-
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { UPLOAD_URL } from "./common/constants.js";
 import { renderSearchGifs } from "./events/search-events.js";
+import { addToUploadedStorage } from "./data/uploaded.js";
 
 
 
@@ -51,11 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
 
-        // toggle favorite event
-        if (event.target.classList.contains('favorite')) {
-            toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
-        };
+                // toggle favorite event
+                if (event.target.classList.contains('favorite')) {
+                    toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
+                };
 
+
+        //view uploaded GIFs button
+        if(event.target.tagName === "BUTTON" && event.target.classList.contains('view-uploaded')) {
+
+            await loadPage(event.target.getAttribute('data-page'));
+        }
     });
 
 
@@ -76,6 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
     document.querySelector('input[type="submit"]').addEventListener('click', async (event) => {
         event.preventDefault();
 
@@ -84,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         const formData = new FormData();
-
+        
         formData.append('file', file);
-
+        console.dir(formData);
         const options = {
             method: 'POST',
             body: formData
@@ -104,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const uploadGif = async (options) => {
 
     const response = await fetch(UPLOAD_URL, options);
-    // const data = await response.json();
+    const result = await response.json();
+    addToUploadedStorage(result.data.id);
     // console.log(data);
 
 };
