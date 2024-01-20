@@ -3,7 +3,8 @@ export {
     HOME,
     TRENDING,
     CONTAINER_SELECTOR,
-    CONTENT_SELECTOR
+    CONTENT_SELECTOR,
+    UPLOAD_URL
 };
 
 
@@ -15,4 +16,6 @@ const TRENDING = 'trending';
 const CONTAINER_SELECTOR = '#container';
 
 const CONTENT_SELECTOR = '#content';
+
+const UPLOAD_URL = `https://upload.giphy.com/v1/gifs?api_key=${API_KEY}`;
 

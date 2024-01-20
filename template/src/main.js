@@ -2,6 +2,9 @@ import { q } from "./events/helpers.js";
 import { loadPage, renderTrending, renderGifByID, renderSearchedGifs } from "./events/navigation-events.js";
 
 
+import { UPLOAD_URL } from "./common/constants.js";
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -33,16 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        if(event.target.tagName === "BUTTON" && event.target.classList.contains('share-button')) {
+        if (event.target.tagName === "BUTTON" && event.target.classList.contains('share-button')) {
             const gifID = event.target.getAttribute('data-page');
             const url = `https://i.giphy.com/${gifID}.webp`
             navigator.clipboard.writeText(url)
-            .then(() => {
-                alert('URL copied successfully!');
-            })
-            .catch(() => {
-                alert('Error copying URL to clipboard');
-            })
+                .then(() => {
+                    alert('URL copied successfully!');
+                })
+                .catch(() => {
+                    alert('Error copying URL to clipboard');
+                })
         }
 
     });
@@ -57,8 +60,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // const myForm = document.getElementById('myForm');
+   
 
+ 
+
+    
+    document.querySelector('input[type="submit"]').addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const inpFile =  document.querySelector('input[name="gif-file"]');
+        const file = inpFile.files[0];
+  
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        const options = {
+            method: 'POST',
+            body: formData 
+        }
+
+        await uploadGif(options);
+
+    })
 
     // loadPage(HOME);
 
 });
+
+const uploadGif = async (options) => {
+
+    const response = await fetch(UPLOAD_URL, options);
+    // const data = await response.json();
+    // console.log(data);
+
+}
+
+
+
