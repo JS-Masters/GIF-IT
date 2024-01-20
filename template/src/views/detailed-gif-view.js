@@ -1,3 +1,5 @@
+import { renderFavoriteStatus } from "../events/favorites-events.js"
+
 export {
   toDetailedGifView
 }
@@ -15,5 +17,6 @@ return `
 <a href="${gifObject.user.profile_url}" class="username-link" target="_blank">${gifObject.user.username}</a>
 <button class="share-button" data-page="${gifObject.id}">Share</button>
 </div>
+${renderFavoriteStatus(gifObject.id)}
 `
 }

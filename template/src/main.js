@@ -1,7 +1,6 @@
 import { q } from "./events/helpers.js";
 import { loadPage, renderTrending, renderGifByID, renderSearchedGifs } from "./events/navigation-events.js";
-
-
+import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { UPLOAD_URL } from "./common/constants.js";
 
 
@@ -47,7 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Error copying URL to clipboard');
                 })
         }
+  // favorite button
+  if (event.target.classList.contains('nav-link')) {
+    await loadPage(event.target.getAttribute('data-page'));
+};
 
+
+// toggle favorite event
+if (event.target.classList.contains('favorite')) {
+    toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
+}
     });
 
 
