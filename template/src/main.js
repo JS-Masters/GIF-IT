@@ -4,7 +4,7 @@ import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { UPLOAD_URL } from "./common/constants.js";
 import { renderSearchGifs } from "./events/search-events.js";
 import { addToUploadedStorage } from "./data/uploaded.js";
-
+import { addQueryToStorage, getQueryStorage } from "./data/query-storage.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await renderSearchGifs(query);
 
+            addQueryToStorage(query);
             searchInput.value = '';
         };
 
@@ -52,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
 
-                // toggle favorite event
-                if (event.target.classList.contains('favorite')) {
-                    toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
-                };
+        // toggle favorite event
+        if (event.target.classList.contains('favorite')) {
+            toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
+        };
 
 
         //view uploaded GIFs button
-        if(event.target.tagName === "BUTTON" && event.target.classList.contains('view-uploaded')) {
+        if (event.target.tagName === "BUTTON" && event.target.classList.contains('view-uploaded')) {
 
             await loadPage(event.target.getAttribute('data-page'));
         }
@@ -67,23 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-    document.addEventListener('change', async function (event) {
+    document.addEventListener('change', async (event) => {
 
         if (event.target.id === 'gifs-number-selector') {
-            await renderTrending(+event.target.value);
+            if (event.target.classList.contains('search')) {
+// console.log(getQueryStorage());
+                await renderSearchGifs((getQueryStorage().join('')),(+event.target.value))
+            }
+            if (event.target.classList.contains('trending')) {
+                await renderTrending(+event.target.value);
+            }
+
         };
 
     });
-
-
-    // const myForm = document.getElementById('myForm');
-
-
-
-
-
-
 
 
     document.querySelector('input[type="submit"]').addEventListener('click', async (event) => {
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         const formData = new FormData();
-        
+
         formData.append('file', file);
         console.dir(formData);
         const options = {

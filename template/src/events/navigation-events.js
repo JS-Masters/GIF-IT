@@ -19,7 +19,7 @@ export const loadPage = async (page = '') => {
 
         case TRENDING:
             setActiveNav(TRENDING);
-            renderGifsNumSelector();
+            renderGifsNumSelector('trending');
             await renderTrending();
             break;
 
@@ -51,8 +51,8 @@ export const renderTrending = async (limit = 10, offset = 0) => {
 };
 
 
-export const renderGifsNumSelector = () => {
-    q(CONTAINER_SELECTOR).innerHTML = toGifsNumSelectorView();
+export const renderGifsNumSelector = (page) => {
+    q(CONTAINER_SELECTOR).innerHTML = toGifsNumSelectorView(page);
 };
 
 export const renderGifDetails = async (id) => {
