@@ -1,15 +1,9 @@
-export {
-    q,
-    qs,
-    setActiveNav,
-};
-
 /**
  * Shorthand for document.querySelector
  * @param {string} selector 
  * @returns {Element}
  */
-const q = (selector) => document.querySelector(selector);
+export const q = (selector) => document.querySelector(selector);
 
 
 /**
@@ -17,11 +11,11 @@ const q = (selector) => document.querySelector(selector);
  * @param {string} selector 
  * @returns {NodeLists<Element>}
  */
-const qs = (selector) => document.querySelectorAll(selector);
+export const qs = (selector) => document.querySelectorAll(selector);
 
 
 
-const setActiveNav = (page) => {
+export const setActiveNav = (page) => {
   const navs = qs('a.nav-link');
 
   Array

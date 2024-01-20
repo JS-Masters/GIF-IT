@@ -2,6 +2,10 @@ import { EMPTY_HEART, FULL_HEART } from '../common/constants.js';
 import { addFavorite, getFavorites, removeFavorite } from '../data/favorites.js';
 import { q } from './helpers.js';
 
+/**
+ * 
+ * @param {string} gifID 
+ */
 export const toggleFavoriteStatus = (gifID) => {
   const favorites = getFavorites();
   const heartSpan = q(`span[data-gif-id="${gifID}"]`);
@@ -17,6 +21,10 @@ export const toggleFavoriteStatus = (gifID) => {
   }
 };
 
+/**
+ * 
+ * @param {string} gifID 
+ */
 export const renderFavoriteStatus = (gifID) => {
   const favorites = getFavorites();
 

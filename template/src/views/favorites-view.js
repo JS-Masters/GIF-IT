@@ -1,7 +1,8 @@
-export {
-    favoritesView
-};
+import { toGifSimpleView } from "./gif-view.js";
 
 
-
-const favoritesView = (gifs) => gifs.map((gif) => `<img class="gifs" id=${gif.id} src="${gif.images.original.url}">`).join('\n');
+export const toFavoritesView = (gifs) => `
+  <div class="grid">
+    ${gifs.map(toGifSimpleView).join('\n')}
+  </div>
+`;

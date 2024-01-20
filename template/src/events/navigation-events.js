@@ -1,24 +1,15 @@
 import { q, setActiveNav } from "./helpers.js";
 import { CONTAINER_SELECTOR, CONTENT_SELECTOR, FAVORITES, HOME, TRENDING } from "../common/constants.js";
-import { loadTrendingGifs, loadGifByID, loadSearchedGifs, loadGifsByIDs, loadRandomGif } from "../requests/request-service.js";
+import { loadTrendingGifs, loadGifByID, loadGifsByIDs, loadRandomGif } from "../requests/request-service.js";
 import { toTrendingView } from "../views/ternding-view.js";
-import { toDetailedGifView } from "../views/detailed-gif-view.js";
 import { toGifsNumSelectorView } from "../views/gifs-num-selector-view.js";
-import { toSearchedView } from '../views/searched-view.js';
 import { getFavorites } from "../data/favorites.js";
-import { favoritesView } from "../views/favorites-view.js";
-
-export {
-    loadPage,
-    renderTrending,
-    renderGifsNumSelector,
-    renderGifByID,
-    renderSearchedGifs,
-    renderFavorites
-}
+import { toFavoritesView } from "../views/favorites-view.js";
+import { toDetailedGifView, toGifSimpleView } from "../views/gif-view.js";
 
 
-const loadPage = async (page = '') => {
+
+export const loadPage = async (page = '') => {
 
     switch (page) {
         case HOME:
@@ -30,7 +21,7 @@ const loadPage = async (page = '') => {
             await renderTrending();
             break;
 
-            case FAVORITES:
+        case FAVORITES:
             setActiveNav(FAVORITES);
             await renderFavorites();
             break;
@@ -39,43 +30,41 @@ const loadPage = async (page = '') => {
 
 };
 
-// Offset is only of future features
-const renderTrending = async (limit = 10, offset = 0) => {
 
+export const renderHome = () => {
+    // missing toHomeView()
+};
+
+
+
+// Offset is only of future features
+export const renderTrending = async (limit = 10, offset = 0) => {
     const trendingGifs = await loadTrendingGifs(limit, offset);
-
     q(CONTENT_SELECTOR).innerHTML = toTrendingView(trendingGifs);
-
 };
 
 
-const renderGifsNumSelector = () => {
+export const renderGifsNumSelector = () => {
     q(CONTAINER_SELECTOR).innerHTML = toGifsNumSelectorView();
-}
-
-const renderGifByID = async (id) => {
-    const gifByID = await loadGifByID(id);
-
-    q(CONTAINER_SELECTOR).innerHTML = toDetailedGifView(gifByID);
-}
-
-// Offset is only of future features
-const renderSearchedGifs = async (query, limit = 10, offset = 0) => {
-    const searchedGifs = await loadSearchedGifs(query, limit, offset);
-    renderGifsNumSelector();
-    q(CONTENT_SELECTOR).innerHTML = toSearchedView(searchedGifs);
 };
 
-const renderFavorites = async () => {
-    const favorites = getFavorites();
-    const temp = favorites.filter((e) => e);
+export const renderGifDetails = async (id) => {
+    const gifByID = await loadGifByID(id);
+    q(CONTAINER_SELECTOR).innerHTML = toDetailedGifView(gifByID);
+};
 
-    if (temp.length > 0) {
-        const favoritesAsString = temp.join(',');
-        const favoritesGifsArr = await loadGifsByIDs(favoritesAsString);
-        q(CONTAINER_SELECTOR).innerHTML = favoritesView(favoritesGifsArr);
+
+
+export const renderFavorites = async () => {
+
+    const favorites = getFavorites().filter((id) => id);
+
+    if (favorites.length > 0) {
+        const favoritesAsString = favorites.join(',');
+        const favoriteGifsArr = await loadGifsByIDs(favoritesAsString);
+        q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(favoriteGifsArr);
     } else {
         const randomGif = await loadRandomGif();
-        q(CONTAINER_SELECTOR).innerHTML = `<img class="gifs" id=${randomGif.id} src="${randomGif.images.original.url}">`;
+        q(CONTAINER_SELECTOR).innerHTML = toGifSimpleView(randomGif);
     };
 };
