@@ -68,9 +68,10 @@ const renderSearchedGifs = async (query, limit = 10, offset = 0) => {
 
 const renderFavorites = async () => {
     const favorites = getFavorites();
-// console.log(favorites)
-    if (favorites.length > 0) {
-        const favoritesAsString = favorites.join(',');
+    const temp = favorites.filter((e) => e);
+
+    if (temp.length > 0) {
+        const favoritesAsString = temp.join(',');
         const favoritesGifsArr = await loadGifsByIDs(favoritesAsString);
         q(CONTAINER_SELECTOR).innerHTML = favoritesView(favoritesGifsArr);
     } else {
