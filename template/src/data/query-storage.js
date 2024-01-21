@@ -1,4 +1,4 @@
-let queryStorage = JSON.parse(localStorage.getItem('query')) || [];
+const queryStorage = JSON.parse(localStorage.getItem('query')) || [];
 
 
 export const addQueryToStorage = (query) => {
@@ -7,11 +7,10 @@ export const addQueryToStorage = (query) => {
   if (currentQueryStored.length !== 0) {
     queryStorage.pop();
   }
-  
+
   queryStorage.push(query);
   localStorage.setItem('query', JSON.stringify(queryStorage));
 };
-
 
 
 export const getQueryStorage = () => [...queryStorage];

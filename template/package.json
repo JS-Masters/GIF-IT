@@ -5,11 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "live-server ."
+    "start": "live-server .",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "JS-Masters",
   "license": "Telerik Academy",
+  "dependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0"
+  },
   "devDependencies": {
     "live-server": "^1.2.2"
   }

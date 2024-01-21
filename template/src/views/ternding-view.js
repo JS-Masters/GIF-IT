@@ -1,4 +1,4 @@
-import { toGifSimpleView } from "./gif-view.js";
+import { toGifSimpleView } from './gif-view.js';
 
 
 export const toTrendingView = (gifs) => `
