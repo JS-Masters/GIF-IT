@@ -57,6 +57,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         };
 
+        // download button
+        if (event.target.tagName === "BUTTON" && event.target.classList.contains('download-btn')) {
+            const gifURL = event.target.getAttribute('data-gif-url');
+
+            (async (gifURL) => {
+                try {
+                    const response = await fetch(gifURL);
+                    const blob = await response.blob();
+
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'downloaded.gif';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } catch (error) {
+                    console.error('Error downloading GIF:', error);
+                }
+
+            })(gifURL);
+
+        };
+
 
         // toggle favorite event
         if (event.target.classList.contains('favorite')) {
