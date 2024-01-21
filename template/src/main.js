@@ -4,6 +4,7 @@ import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { renderSearchGifs } from './events/search-events.js';
 import { addQueryToStorage, getQueryStorage } from './data/query-storage.js';
 import { uploadGif } from './requests/request-service.js';
+import { addComment, displayComments } from './events/addComments-events.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Single gif view
     if (event.target.tagName === 'IMG' && event.target.classList.contains('gifs')) {
       await renderGifDetails(event.target.getAttribute('id'));
+      await displayComments(event.target.getAttribute('id'));
     };
 
     // Share button
@@ -125,4 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // loadPage(HOME);
+});
+
+// Add comment event
+document.addEventListener('click', async (event) => {
+  if (event.target.id === 'addCommentButton') {
+    addComment(event.target.getAttribute('data-gif-id'));
+  }
 });

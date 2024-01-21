@@ -18,4 +18,9 @@ export const toDetailedGifView = (gif) => `
     <button class="download-btn" data-gif-url="${gif.images.original.url}">Download</button>
   </div>
   ${renderFavoriteStatus(gif.id)}
-  `;
+  <div class="comments">
+  <h2>Comments</h2>
+  <div id="commentsContainer"></div>
+  <textarea id="commentInput" placeholder="What do you think..."></textarea>
+  <button id="addCommentButton" data-gif-id="${gif.id}">Add comment</button>
+</div>`;
