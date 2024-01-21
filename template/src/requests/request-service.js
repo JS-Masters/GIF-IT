@@ -1,4 +1,6 @@
 import { getGifByIdURL, getGifsByIDs, getTrendingURL, RANDOM_GIF_URL, searchByQueryURL } from "../common/constants.js";
+import { addToUploadedStorage } from "../data/uploaded.js";
+import { UPLOAD_URL } from "../common/constants.js";
 
 
 
@@ -51,3 +53,10 @@ export const loadUploadedGIFs = async (IDs) => {
 
     return result.data;
 }
+
+export const uploadGif = async (options) => {
+
+    const response = await fetch(UPLOAD_URL, options);
+    const result = await response.json();
+    addToUploadedStorage(result.data.id);
+};
