@@ -10,11 +10,10 @@ export const toDetailedGifView = (gif) => `
     <img class="gifs" id=${gif.id} src="${gif.images.original.url}">
   </div>
   <div class="user-info">
-    <h2>Uploaded by:</h2>
     ${gif.hasOwnProperty('user') ?
-    `<img class="user-avatar" src="${gif.user.avatar_url}"></img>
-        <a href="${gif.user.profile_url}" class="username-link" target="_blank">${gif.user.username}</a>` :
-    ''}
+    `<h2>Uploaded by:</h2>
+    <img class="user-avatar" src="${gif.user.avatar_url}"></img>
+    <a href="${gif.user.profile_url}" class="username-link" target="_blank">${gif.user.username}</a>`: ''}
     <button class="share-button" data-page="${gif.id}">Share</button>
     <button class="download-btn" data-gif-url="${gif.images.original.url}">Download</button>
   </div>
