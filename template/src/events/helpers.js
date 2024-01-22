@@ -15,7 +15,7 @@ export const qs = (selector) => document.querySelectorAll(selector);
 
 
 export const setActiveNav = (page) => {
-  const navs = qs('a.nav-link');
+  const navs = qs('img.nav-link');
 
   Array
     .from(navs)

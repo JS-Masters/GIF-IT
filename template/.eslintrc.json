@@ -12,7 +12,7 @@
             "error",
             "always"
         ],
-        "max-len": ["error", { "code": 180 }],
+        "max-len": ["error", { "code": 370 }],
         "func-style": "error",
         "semi": 2,
         "no-undef": 2,
@@ -31,7 +31,8 @@
         "no-redeclare": 2,
         "no-shadow": 2, 
         "no-shadow-restricted-names": 2,
-        "no-unused-vars": ["error", { "varsIgnorePattern": "_" }]
+        "no-unused-vars": ["error", { "varsIgnorePattern": "_" }],
+        "linebreak-style":0
     },
     "parserOptions": {
         "sourceType": "module"

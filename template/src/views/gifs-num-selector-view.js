@@ -3,14 +3,16 @@ export {
 };
 
 const toGifsNumSelectorView = (page) => `
-  <div>
-    <label for='gifs-number-selector'><b>GIF's on page:</b></label>
-    <select class=${page} id='gifs-number-selector'>
-        <option>10</option>
-        <option>25</option>
-        <option>50</option>
-    </select>
-  </div>
-  <div id="content">
-  </div>
+<div class="${page} dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown
+  </button>
+  <ul class="dropdown-menu">
+    <li><button class="${page} dropdown-item" type="button" data-page="10">10</button></li>
+    <li><button class="${page} dropdown-item" type="button" data-page="25">25</button></li>
+    <li><button class="${page} dropdown-item" type="button" data-page="50">50</button></li>
+  </ul>
+</div>
+<div id="content">
+</div>
   `;

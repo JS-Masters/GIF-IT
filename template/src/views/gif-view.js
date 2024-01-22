@@ -10,7 +10,7 @@ export const toDetailedGifView = (gif) => `
     <img class="gifs" id=${gif.id} src="${gif.images.original.url}">
   </div>
   <div class="user-info">
-    ${gif.hasOwnProperty('user') ?
+    ${'user' in gif ?
     `<h2>Uploaded by:</h2>
     <img class="user-avatar" src="${gif.user.avatar_url}"></img>
     <a href="${gif.user.profile_url}" class="username-link" target="_blank">${gif.user.username}</a>`: ''}
@@ -23,4 +23,5 @@ export const toDetailedGifView = (gif) => `
   <div id="commentsContainer"></div>
   <textarea id="commentInput" placeholder="What do you think..."></textarea>
   <button id="addCommentButton" data-gif-id="${gif.id}">Add comment</button>
-</div>`;
+</div>
+`;

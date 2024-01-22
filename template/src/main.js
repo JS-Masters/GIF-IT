@@ -5,22 +5,35 @@ import { renderSearchGifs } from './events/search-events.js';
 import { addQueryToStorage, getQueryStorage } from './data/query-storage.js';
 import { uploadGif } from './requests/request-service.js';
 import { addComment, displayComments } from './events/addComments-events.js';
+import { HOME } from './common/constants.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('click', async (event) => {
 
-
     // Navigation events
     if (event.target.classList.contains('nav-link')) {
       await loadPage(event.target.getAttribute('data-page'));
     };
 
+    // Home Search Button
+    if (event.target.tagName === 'BUTTON' && event.target.id === 'home-search-button') {
+      await loadPage(event.target.getAttribute('id'));
+    }
+
+    // Home Upload Button
+    if (event.target.tagName === 'BUTTON' && event.target.id === 'home-upload-button') {
+      await loadPage(event.target.getAttribute('id'));
+    }
+
     // Search bar
-    if (event.target.tagName === 'BUTTON' && event.target.id === 'search-btn') {
-      const searchInput = q('#search-input');
+    if ((event.target.tagName === 'BUTTON' && event.target.id === 'search-btn') ||
+        (event.target.classList.contains('magnifier')) ||
+        event.target.tagName === 'path') {
+
       event.preventDefault();
+      const searchInput = q('#search-input');
 
       if (!searchInput.value) {
         return alert('Invalid search value!');
@@ -28,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const query = searchInput.value
         .split(' ')
-        .filter(word => word)
+        .filter(Boolean)
         .join('+');
 
       await renderSearchGifs(query);
@@ -66,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Single gif view
     if (event.target.tagName === 'IMG' && event.target.classList.contains('gifs')) {
       await renderGifDetails(event.target.getAttribute('id'));
-      await displayComments(event.target.getAttribute('id'));
+      displayComments(event.target.getAttribute('id'));
     };
 
     // Share button
@@ -86,22 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target.tagName === 'BUTTON' && event.target.classList.contains('download-btn')) {
       const gifURL = event.target.getAttribute('data-gif-url');
 
-      (async (recievedGifURL) => {
-        try {
-          const response = await fetch(recievedGifURL);
-          const blob = await response.blob();
+      try {
+        const response = await fetch(gifURL);
+        const blob = await response.blob();
 
-          const link = document.createElement('a');
-          link.href = window.URL.createObjectURL(blob);
-          link.download = 'downloaded.gif';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } catch (error) {
-          console.error('Error downloading GIF:', error);
-        }
-
-      })(gifURL);
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'downloaded.gif';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Error downloading GIF:', error);
+      }
 
     };
 
@@ -109,29 +119,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target.classList.contains('favorite')) {
       toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
     };
-  });
 
-  document.addEventListener('change', async (event) => {
+    // Add comment event
+    if (event.target.id === 'addCommentButton') {
+      addComment(event.target.getAttribute('data-gif-id'));
+    };
 
-    if (event.target.id === 'gifs-number-selector') {
+    // Selector (GIFs on page)
+    if (event.target.classList.contains('dropdown-item')) {
       if (event.target.classList.contains('search')) {
         // console.log(getQueryStorage());
-        await renderSearchGifs((getQueryStorage().join('')), (+event.target.value));
+        await renderSearchGifs((getQueryStorage().join('')), (+event.target.getAttribute('data-page')));
       };
 
       if (event.target.classList.contains('trending')) {
-        await renderTrending(+event.target.value);
+        await renderTrending(+event.target.getAttribute('data-page'));
       };
     };
 
+
   });
 
-  // loadPage(HOME);
+  loadPage(HOME);
 });
 
-// Add comment event
-document.addEventListener('click', async (event) => {
-  if (event.target.id === 'addCommentButton') {
-    addComment(event.target.getAttribute('data-gif-id'));
-  }
-});

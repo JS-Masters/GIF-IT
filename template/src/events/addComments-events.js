@@ -57,10 +57,10 @@ export const displayComments = (gifID) => {
   });
 };
 
-export const showDetailedGifView = (gifObject) => {
+export const showDetailedGifView = (gif) => {
   const content = document.getElementById('content');
 
-  content.innerHTML = toDetailedGifView(gifObject);
-  displayComments(gifObject.id);
+  content.innerHTML = toDetailedGifView(gif);
+  displayComments(gif.id);
 
 };

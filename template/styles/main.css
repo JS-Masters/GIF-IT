@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+
 .user-avatar {
   width: 50px;
   height: 50px;
@@ -16,42 +19,44 @@
 /* Search container */
 
 .search-form {
-  width: 500px;
-  height: 60px;
-  position: relative;
-}
-
-.search-form input {
-  background-color: red;
-  padding-left: 25px; 
-  width: 95%;
-  height: 95%;
-  display: block;
-  border-radius: 30px;
-  font-size: 30px;
-  outline: none;
-  border: none;
-}
-
-.search-form button {
-  position: absolute;
-  top: 0;
-  right: -2px;
-  width: 100px;
-  height: 98%;
-  background: linear-gradient(90deg, black, grey);
-  color: white;
-  border-radius: 30px;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
+  background: none;
+
 }
 
-.magnifier{
-  fill: red;
+#search-input {
+  width: 500px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 35px;
+  border: 3px solid #47DB00;
+  background-color: transparent;
+  margin-top: 50px;
+  padding: 10px;
+  padding-left: 20px;
+}
+#search-input::placeholder{
+color: #47DB00;
+}
+
+
+#search-btn {
+  width: 80px;
+  height: 85px;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  margin-top: 50px;
+  margin-left: 10px;
+  background-color: transparent;
+  transition-duration: 0.5s;
+}
+
+#search-btn:active {
+  transform: scale(0.8);
+}
+.magnifier {
+  fill: #47DB00;
 }
 
 
@@ -60,4 +65,113 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#container {
+  display: grid;
+  grid-area: container;
+  max-width: 1400px;
+  margin: 0 auto;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+body {
+  background: url('../images/logos/hacker-background.jpg');
+  /* font-family: 'Abril Fatface', serif; */
+}
+
+img.nav-link {
+  margin-left: 10px;
+  border-radius: 20px;
+  border: 3px solid #47DB00;
+  ;
+}
+
+img.nav-link-home.active {
+  content: url('../images/navigation-gifs/home-active.gif');
+}
+
+img.nav-link-trending.active {
+  content: url('../images/navigation-gifs/trending-active.gif');
+}
+
+img.nav-link-favorites.active {
+  content: url('../images/navigation-gifs/favorites-active.gif');
+}
+
+img.nav-link-about.active {
+  content: url('../images/navigation-gifs/about-active.gif');
+}
+
+.home-info {
+  color: white;
+}
+
+.home-info>p {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.home-info li {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.home-info ul {
+  list-style: square;
+}
+
+#home-search-button {
+  display: inline-block;
+  text-align: center;
+  transition-duration: 0.5s;
+  height: 150px;
+  width: 400px;
+  background-color: transparent;
+  color: #47DB00;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 40px;
+  font-family: 'Abril Fatface', serif;
+  margin-top: 100px;
+}
+
+#home-search-button:active {
+  transform: scale(0.8);
+}
+
+#home-search-button:hover {
+  opacity: 0.5;
+}
+
+#home-upload-button {
+  display: inline-block;
+  text-align: center;
+  transition-duration: 0.5s;
+  height: 230px;
+  width: 230px;
+  background-color: transparent;
+  color: #47DB00;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 40px;
+  font-family: 'Abril Fatface', serif;
+  margin-top: 100px;
+}
+
+#home-upload-button:hover {
+  opacity: 0.5;
+}
+
+#home-upload-button:active {
+  transform: scale(0.8);
+}
+
+.home-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 1300px;
 }
