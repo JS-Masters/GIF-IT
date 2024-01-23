@@ -36,8 +36,9 @@
   padding: 10px;
   padding-left: 20px;
 }
-#search-input::placeholder{
-color: #47DB00;
+
+#search-input::placeholder {
+  color: #47DB00;
 }
 
 
@@ -55,6 +56,7 @@ color: #47DB00;
 #search-btn:active {
   transform: scale(0.8);
 }
+
 .magnifier {
   fill: #47DB00;
 }
@@ -72,19 +74,16 @@ nav {
   grid-area: container;
   max-width: 1400px;
   margin: 0 auto;
-  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 body {
   background: url('../images/logos/hacker-background.jpg');
-  /* font-family: 'Abril Fatface', serif; */
 }
 
 img.nav-link {
   margin-left: 10px;
   border-radius: 20px;
-  border: 3px solid #47DB00;
-  ;
+
 }
 
 img.nav-link-home.active {
@@ -175,3 +174,196 @@ img.nav-link-about.active {
   justify-content: space-around;
   width: 1300px;
 }
+
+.dropdown {
+  background-color: transparent;
+  color: #47DB00;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+  width: 140px;
+  background-color: black;
+  color: #47DB00;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: -110px;
+  margin-left: 25px;
+}
+
+.dropdown-menu button.dropdown-item {
+  background-color: black;
+  color: #47DB00;
+}
+
+
+
+
+
+.upload-input::-webkit-file-upload-button {
+  color: #47DB00;
+  background-color: transparent;
+  border: 2px solid #47DB00;
+  border-radius: 5px;
+  font-weight: bold;
+  transition-duration: 0.5s;
+  width: 140px;
+  height: 60px;
+}
+
+
+.upload-input::-webkit-file-upload-button:hover {
+
+  opacity: 0.5;
+
+}
+.upload-input::-webkit-file-upload-button:active {
+  transform: scale(0.8);
+}
+
+/* #upload-input::before {
+  content: 'Your ';
+  display: inline-block;
+  background-color: transparent;
+  color: #47DB00;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+ 
+}
+
+#upload-input::after {
+  content: none;
+  display: inline-block;
+
+} */
+
+
+
+.upload-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* #myForm {
+  height: 80px;
+  margin-top: 150px;
+  padding: 20px;
+} */
+.upload-input {
+  color: transparent;
+}
+
+.upload-button {
+  display: inline-block;
+  text-align: center;
+  transition-duration: 0.5s;
+  height: 230px;
+  width: 230px;
+  background-color: transparent;
+  color: #47DB00;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 40px;
+  font-family: 'Abril Fatface', serif;
+  margin-top: 100px;
+}
+
+.upload-button:hover {
+  opacity: 0.5;
+}
+
+.upload-button:active {
+  transform: scale(0.8);
+}
+
+.view-uploaded {
+  display: inline-block;
+  text-align: center;
+  transition-duration: 0.5s;
+  height: 230px;
+  width: 230px;
+  background-color: transparent;
+  color: #47DB00;
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 40px;
+  font-family: 'Abril Fatface', serif;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+
+.view-uploaded:hover {
+  opacity: 0.5;
+}
+
+.view-uploaded:active {
+  transform: scale(0.8);
+}
+
+/* #nav-events {
+  position: fixed;
+} */
+#no-file-chosen-div {
+  margin-top: 20px;
+  margin-left: 200px;
+}
+#no-file-chosen-div img {
+  border: 3px solid #47DB00;
+  border-radius: 15px;
+  margin-right: 30px;
+}
+#no-file-chosen-div h1 {
+  color: red;
+  font-weight: bold;
+}
+
+#no-file-chosen-div button {
+  margin-left: -100px;
+  margin-top: 0;
+}
+#after-upload-div {
+  margin-top: 30px;
+}
+#after-upload-div h1 {
+  font-weight: bold;
+  color: #47DB00;
+}
+
+#after-upload-div h2 {
+  display: inline-block;
+  color: #47DB00;
+  margin-left: 30px;
+  font-size: 43px;
+}
+
+.after-upload-button {
+  color: #47DB00;
+  background-color: transparent;
+  border: 2px solid #47DB00;
+  border-radius: 5px;
+  font-weight: bold;
+  transition-duration: 0.5s;
+  width: 140px;
+  height: 60px;
+}
+
+.after-upload-button:active {
+  transform: scale(0.8);
+}
+
+.after-upload-button:hover {
+  opacity: 0.5;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  cursor: pointer;
+}
+
+

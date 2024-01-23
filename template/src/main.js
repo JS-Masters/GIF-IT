@@ -5,7 +5,9 @@ import { renderSearchGifs } from './events/search-events.js';
 import { addQueryToStorage, getQueryStorage } from './data/query-storage.js';
 import { uploadGif } from './requests/request-service.js';
 import { addComment, displayComments } from './events/addComments-events.js';
-import { HOME } from './common/constants.js';
+import { CONTAINER_SELECTOR, HOME } from './common/constants.js';
+import { toAfterUploadPageView } from './views/after-upload-page-view.js';
+import { toNoFileChosenView } from './views/no-file-chosen-view.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -51,13 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Upload button
-    if (event.target.id === 'upload-button') {
+    if (event.target.classList.contains('upload-button')) {
       event.preventDefault();
       const inpFile = document.querySelector('input[name="gif-file"]');
       const file = inpFile.files[0];
 
       if (!file) {
-        return alert('You have to choose a .gif file first!');
+        q(CONTAINER_SELECTOR).innerHTML = toNoFileChosenView();
+        return;
+        // return alert('You have to choose a .gif file first!');
       };
       const formData = new FormData();
       formData.append('file', file);
@@ -67,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         body: formData,
       };
       await uploadGif(options);
-      alert('You uploaded your GIF successfully!');
+      q(CONTAINER_SELECTOR).innerHTML = toAfterUploadPageView();
+      // alert('You uploaded your GIF successfully!');
     };
 
     // View uploaded GIFs button

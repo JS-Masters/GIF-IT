@@ -5,7 +5,7 @@ export {
 const toGifsNumSelectorView = (page) => `
 <div class="${page} dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown
+    GIFs on Page:
   </button>
   <ul class="dropdown-menu">
     <li><button class="${page} dropdown-item" type="button" data-page="10">10</button></li>
