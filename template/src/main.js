@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('click', async (event) => {
 
-    // Navigation events
+    // Navigation Events
     if (event.target.classList.contains('nav-link')) {
       await loadPage(event.target.getAttribute('data-page'));
     };
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await loadPage(event.target.getAttribute('id'));
     }
 
-    // Search bar
+    // Search Bar
     if ((event.target.tagName === 'BUTTON' && event.target.id === 'search-btn') ||
         (event.target.classList.contains('magnifier')) ||
         event.target.tagName === 'path') {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       searchInput.value = '';
     };
 
-    // Upload button
+    // Upload Button
     if (event.target.classList.contains('upload-button')) {
       event.preventDefault();
       const inpFile = document.querySelector('input[name="gif-file"]');
@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!file) {
         q(CONTAINER_SELECTOR).innerHTML = toNoFileChosenView();
         return;
-        // return alert('You have to choose a .gif file first!');
       };
       const formData = new FormData();
       formData.append('file', file);
@@ -72,22 +71,21 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       await uploadGif(options);
       q(CONTAINER_SELECTOR).innerHTML = toAfterUploadPageView();
-      // alert('You uploaded your GIF successfully!');
     };
 
-    // View uploaded GIFs button
+    // View Uploaded GIFs Button
     if (event.target.tagName === 'BUTTON' && event.target.classList.contains('view-uploaded')) {
 
       await loadPage(event.target.getAttribute('data-page'));
     };
 
-    // Single gif view
+    // Single GIF View
     if (event.target.tagName === 'IMG' && event.target.classList.contains('gifs')) {
       await renderGifDetails(event.target.getAttribute('id'));
       displayComments(event.target.getAttribute('id'));
     };
 
-    // Share button
+    // Share Button
     if (event.target.tagName === 'BUTTON' && event.target.classList.contains('share-button')) {
       const gifID = event.target.getAttribute('data-page');
       const url = `https://i.giphy.com/${gifID}.webp`;
@@ -100,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Download button
+    // Download Button
     if (event.target.tagName === 'BUTTON' && event.target.classList.contains('download-btn')) {
       const gifURL = event.target.getAttribute('data-gif-url');
 
@@ -120,20 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-    // Toggle favorite event
+    // Toggle Favorite Event
     if (event.target.classList.contains('favorite')) {
       toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
     };
 
-    // Add comment event
+    // Add Comment Event
     if (event.target.id === 'addCommentButton') {
       addComment(event.target.getAttribute('data-gif-id'));
     };
 
-    // Selector (GIFs on page)
+    // Selector (GIFs on Page)
     if (event.target.classList.contains('dropdown-item')) {
+
       if (event.target.classList.contains('search')) {
-        // console.log(getQueryStorage());
         await renderSearchGifs((getQueryStorage().join('')), (+event.target.getAttribute('data-page')));
       };
 
