@@ -6,7 +6,7 @@ import { renderFavoriteStatus } from '../events/favorites-events.js';
  * @param {Object} gif - The GIF object to convert.
  * @returns {string} - The HTML string representing the simple view of the GIF.
  */
-export const toGifSimpleView = (gif) => `<div class="grid-item"><img class="gifs" id=${gif.id} src="${gif.images.fixed_width.url}"></div>`;
+export const toGifSimpleView = (gif) => `<img class="gifs" id=${gif.id} src="${gif.images.original.url}">`;
 
 
 /**

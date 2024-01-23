@@ -4,4 +4,9 @@
  * @param {Array<object>} gifs - An array of GIF objects.
  * @returns {string} - A string of HTML image elements.
  */
-export const toUploadedGIFsView = (gifs) => gifs.map((gif) => `<img class="gifs" id=${gif.id} src="${gif.images.original.url}">`).join('\n');
+export const toUploadedGIFsView = (gifs) => gifs.map((gif) => `
+<div id="uploaded-container">
+  <h2>Here are your Uploaded GIFs:</h2>
+  <img class="gifs" id=${gif.id} src="${gif.images.original.url}">
+</div>
+`).join('\n');

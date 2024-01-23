@@ -7,10 +7,8 @@ import { toGifSimpleView } from './gif-view.js';
  * @returns {string} The HTML string representing the favorites view.
  */
 export const toFavoritesView = (gifs) => `
-<h2>Here are your favorite GIFs</h2>
-<div class="content">
   <div class="grid">
+  <h2>Here are your Favorite GIFs:</h2>
     ${gifs.map(toGifSimpleView).join('\n')}
   </div>
-</div>
 `;
