@@ -1,4 +1,7 @@
-
+/**
+ * Generates the HTML markup for the after-upload page view.
+ * @returns {string} The HTML markup for the after-upload page view.
+ */
 export const toAfterUploadPageView = () => `
 <div id="after-upload-div">
   <h1>YEAH... YOUR GIF IS UPLOADED!!!</h1>

@@ -1,4 +1,7 @@
-
+/**
+ * Generates the HTML markup for the search page view.
+ * @returns {string} The HTML markup for the search page view.
+ */
 export const toSearchPageView = () => `
 <div class="search-form">
   <form>
@@ -7,4 +10,3 @@ export const toSearchPageView = () => `
     </form>
 </div>
 `;
-

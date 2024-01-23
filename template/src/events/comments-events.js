@@ -1,5 +1,9 @@
 import { toDetailedGifView } from '../views/gif-view.js';
 
+/**
+ * Adds a comment to the specified GIF.
+ * @param {string} gifID - The ID of the GIF.
+ */
 export const addComment = (gifID) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
   const commentInput = document.getElementById('commentInput');
@@ -12,6 +16,7 @@ export const addComment = (gifID) => {
 
   displayComments(gifID);
 };
+
 const editComment = (gifID, commentIndex) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
   const newComment = prompt('Edit comment:', comments[commentIndex]);
@@ -31,6 +36,10 @@ const deleteComment = (gifID, commentIndex) => {
 };
 
 
+/**
+ * Displays the comments for a given GIF.
+ * @param {string} gifID - The ID of the GIF.
+ */
 export const displayComments = (gifID) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
   const commentsContainer = document.getElementById('commentsContainer');
@@ -57,6 +66,12 @@ export const displayComments = (gifID) => {
   });
 };
 
+/**
+ * Displays the detailed view of a GIF and its comments.
+ * 
+ * @param {Object} gif - The GIF object to display.
+ * @returns {void}
+ */
 export const showDetailedGifView = (gif) => {
   const content = document.getElementById('content');
 

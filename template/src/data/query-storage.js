@@ -1,9 +1,13 @@
 const queryStorage = JSON.parse(localStorage.getItem('query')) || [];
 
 
+/**
+ * Adds a query to the storage.
+ * @param {string} query - The query to be added.
+ */
 export const addQueryToStorage = (query) => {
 
-  const currentQueryStored = getQueryStorage().filter((q) => q);
+  const currentQueryStored = getQueryStorage().filter(Boolean);
   if (currentQueryStored.length !== 0) {
     queryStorage.pop();
   }
@@ -13,4 +17,8 @@ export const addQueryToStorage = (query) => {
 };
 
 
+/**
+ * Retrieves the query storage.
+ * @returns {Array<string>} The query storage.
+ */
 export const getQueryStorage = () => [...queryStorage];

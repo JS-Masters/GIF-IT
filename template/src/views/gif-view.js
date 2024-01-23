@@ -1,9 +1,20 @@
 import { renderFavoriteStatus } from '../events/favorites-events.js';
 
 
+/**
+ * Converts a GIF object into a simple view HTML string.
+ *
+ * @param {Object} gif - The GIF object to convert.
+ * @returns {string} - The HTML string representing the simple view of the GIF.
+ */
 export const toGifSimpleView = (gif) => `<div class="grid-item"><img class="gifs" id=${gif.id} src="${gif.images.fixed_width.url}"></div>`;
 
 
+/**
+ * Converts a GIF object into a detailed GIF view HTML string.
+ * @param {Object} gif - The GIF object.
+ * @returns {string} - The HTML string representing the detailed GIF view.
+ */
 export const toDetailedGifView = (gif) => `
   <div class="gif-single-view">
     <h1>${gif.title}</h1>

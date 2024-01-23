@@ -1,3 +1,7 @@
+/**
+ * Generates the HTML markup for the upload page view.
+ * @returns {string} The HTML markup for the upload page view.
+ */
 export const toUploadPageView = () => `
 <div class="upload-form">
 <form class="form" id="myForm">

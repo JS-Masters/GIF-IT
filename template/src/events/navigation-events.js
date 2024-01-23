@@ -12,6 +12,11 @@ import { toHomeView } from '../views/home-view.js';
 import { toSearchPageView } from '../views/search-page-view.js';
 import { toUploadPageView } from '../views/upload-page-view.js';
 
+/**
+ * Loads the specified page and performs the necessary actions based on the page.
+ * @param {string} page - The page to load.
+ * @returns {Promise<void>} - A promise that resolves when the page is loaded.
+ */
 export const loadPage = async (page = '') => {
 
   switch (page) {
@@ -49,30 +54,57 @@ export const loadPage = async (page = '') => {
 };
 
 
+/**
+ * Renders the home view by updating the innerHTML of the container element.
+ */
 export const renderHome = () => {
 
   q(CONTAINER_SELECTOR).innerHTML = toHomeView();
 };
 
 
-// Offset is only of future features
+/**
+ * Renders the trending GIFs on the page.
+ * 
+ * @param {number} limit - The maximum number of trending GIFs to load.
+ * @param {number} offset - The offset for pagination.
+ * @returns {Promise<void>} - A promise that resolves when the trending GIFs are rendered.
+ */
 export const renderTrending = async (limit = 10, offset = 0) => {
   const trendingGifs = await loadTrendingGifs(limit, offset);
   q(CONTENT_SELECTOR).innerHTML = toTrendingView(trendingGifs);
 };
 
 
+/**
+ * Renders the search attributes on the page.
+ * 
+ * @param {number} page - The current page number.
+ * @returns {void}
+ */
 export const renderSearchAttributes = (page) => {
   const result = toSearchPageView() + toGifsNumSelectorView(page);
   q(CONTAINER_SELECTOR).innerHTML = result;
 };
 
+
+/**
+ * Renders the details of a GIF by its ID.
+ * @param {string} id - The ID of the GIF.
+ * @returns {Promise<void>} - A promise that resolves when the GIF details are rendered.
+ */
 export const renderGifDetails = async (id) => {
   const gifByID = await loadGifByID(id);
   q(CONTAINER_SELECTOR).innerHTML = toDetailedGifView(gifByID);
 };
 
 
+/**
+ * Renders the favorites section.
+ * If there are favorite GIFs, it loads and displays them.
+ * If there are no favorite GIFs, it loads and displays a random GIF.
+ * @returns {Promise<void>} A promise that resolves once the rendering is complete.
+ */
 export const renderFavorites = async () => {
 
   const favorites = getFavorites().filter(Boolean);
@@ -87,9 +119,15 @@ export const renderFavorites = async () => {
   };
 };
 
+
+/**
+ * Renders the uploaded GIFs on the page.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the GIFs are rendered.
+ */
 const renderUploadedGIFs = async () => {
 
-  const uploadedGIFsIDs = getUploadedStorage().filter((e) => e);
+  const uploadedGIFsIDs = getUploadedStorage().filter(Boolean);
 
   if (uploadedGIFsIDs.length > 0) {
     const uploadedGIFsIDsAsString = uploadedGIFsIDs.join(',');
@@ -102,6 +140,12 @@ const renderUploadedGIFs = async () => {
 
 };
 
+/**
+ * Loads the search page.
+ * If there is no dropdown element, it renders the search attributes.
+ * If there is a dropdown element with the 'trending' class, it renders the search attributes.
+ * Finally, it updates the inner HTML of the container element with the search page view.
+ */
 export const loadSearchPage = () => {
 
   if (!(q('.dropdown'))) {
@@ -112,6 +156,10 @@ export const loadSearchPage = () => {
   q(CONTAINER_SELECTOR).innerHTML = toSearchPageView();
 };
 
+
+/**
+ * Loads the upload page by updating the innerHTML of the container element.
+ */
 const loadUploadPage = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadPageView();
 };

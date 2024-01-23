@@ -4,7 +4,7 @@ import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { renderSearchGifs } from './events/search-events.js';
 import { addQueryToStorage, getQueryStorage } from './data/query-storage.js';
 import { uploadGif } from './requests/request-service.js';
-import { addComment, displayComments } from './events/addComments-events.js';
+import { addComment, displayComments } from './events/comments-events.js';
 import { CONTAINER_SELECTOR, HOME } from './common/constants.js';
 import { toAfterUploadPageView } from './views/after-upload-page-view.js';
 import { toNoFileChosenView } from './views/no-file-chosen-view.js';

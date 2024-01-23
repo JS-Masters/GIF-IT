@@ -1,8 +1,10 @@
-export {
-  toGifsNumSelectorView,
-};
-
-const toGifsNumSelectorView = (page) => `
+/**
+ * Generates the HTML for the GIFs number selector view.
+ * 
+ * @param {string} page - The current page.
+ * @returns {string} The HTML string for the GIFs number selector view.
+ */
+export const toGifsNumSelectorView = (page) => `
 <div class="${page} dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     GIFs on Page:

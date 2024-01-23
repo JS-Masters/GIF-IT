@@ -1,5 +1,7 @@
-
-
+/**
+ * Generates the HTML markup for the home view.
+ * @returns {string} The HTML markup for the home view.
+ */
 export const toHomeView = () => {
   return `
   <div class="home-buttons">
