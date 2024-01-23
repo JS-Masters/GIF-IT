@@ -24,7 +24,6 @@ export const toDetailedGifView = (gif) => `
     </div>
     <h1>${gif.title}</h1>
     <img class="gifs" id=${gif.id} src="${gif.images.original.url}" alt="${gif.title}">
-    <p class="file-name">${gif.title}</p>
     ${renderFavoriteStatus(gif.id)}
   </div>
   <div class="user-info">
