@@ -50,13 +50,14 @@ export const displayComments = (gifID) => {
     commentDiv.className = 'comment visible-comment';
     commentDiv.textContent = comment;
 
-
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
+    editButton.className = 'edit-button'; 
     editButton.addEventListener('click', () => editComment(gifID, index));
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-button';
     deleteButton.addEventListener('click', () => deleteComment(gifID, index));
 
     commentDiv.appendChild(editButton);
