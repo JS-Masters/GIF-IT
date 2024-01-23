@@ -8,7 +8,7 @@ import { q } from './helpers.js';
  */
 export const toggleFavoriteStatus = (gifID) => {
   const favorites = getFavorites();
-  const heartSpan = q(`span[data-gif-id="${gifID}"]`);
+  const heartSpan = q(`button[data-gif-id="${gifID}"]`);
 
   if (favorites.includes(gifID)) {
     removeFavorite(gifID);
@@ -29,6 +29,6 @@ export const renderFavoriteStatus = (gifID) => {
   const favorites = getFavorites();
 
   return favorites.includes(gifID) ?
-    `<span class="favorite active" data-gif-id="${gifID}">${FULL_HEART}</span>` :
-    `<span class="favorite" data-gif-id="${gifID}">${EMPTY_HEART}</span>`;
+    `<button class="favorite active" data-gif-id="${gifID}">${FULL_HEART}</button>` :
+    `<button class="favorite" data-gif-id="${gifID}">${EMPTY_HEART}</button>`;
 };

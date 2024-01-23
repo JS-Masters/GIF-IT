@@ -5,12 +5,13 @@ import { toTrendingView } from '../views/ternding-view.js';
 import { toGifsNumSelectorView } from '../views/gifs-num-selector-view.js';
 import { getFavorites } from '../data/favorites.js';
 import { toFavoritesView } from '../views/favorites-view.js';
-import { toDetailedGifView, toGifSimpleView } from '../views/gif-view.js';
+import { toDetailedGifView } from '../views/gif-view.js';
 import { getUploadedStorage } from '../data/uploaded.js';
 import { toUploadedGIFsView } from '../views/uploaded-gifs-view.js';
 import { toHomeView } from '../views/home-view.js';
 import { toSearchPageView } from '../views/search-page-view.js';
 import { toUploadPageView } from '../views/upload-page-view.js';
+import { toNoFavoritesView } from '../views/no-favorites-view.js';
 
 /**
  * Loads the specified page and performs the necessary actions based on the page.
@@ -115,7 +116,8 @@ export const renderFavorites = async () => {
     q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(favoriteGifsArr);
   } else {
     const randomGif = await loadRandomGif();
-    q(CONTAINER_SELECTOR).innerHTML = toGifSimpleView(randomGif);
+    q(CONTAINER_SELECTOR).innerHTML = `<div id="content"></div>`;
+    q(CONTENT_SELECTOR).innerHTML = toNoFavoritesView(randomGif);
   };
 };
 

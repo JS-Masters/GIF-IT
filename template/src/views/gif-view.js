@@ -6,7 +6,11 @@ import { renderFavoriteStatus } from '../events/favorites-events.js';
  * @param {Object} gif - The GIF object to convert.
  * @returns {string} - The HTML string representing the simple view of the GIF.
  */
-export const toGifSimpleView = (gif) => `<img class="gifs" id=${gif.id} src="${gif.images.original.url}">`;
+export const toGifSimpleView = (gif) => `
+<div class="gif-box">
+  <img class="gifs" id=${gif.id} src="${gif.images.original.url}">
+  ${renderFavoriteStatus(gif.id)}
+</div>`;
 
 
 /**
@@ -33,8 +37,8 @@ export const toDetailedGifView = (gif) => `
 
   <div class="comments">
     <h2>Comments</h2>
-    <div id="commentsContainer"></div>
-    <textarea id="commentInput" placeholder="What do you think..."></textarea>
-    <button id="addCommentButton" data-gif-id="${gif.id}">Add comment</button>
+    <div id="comments-container"></div>
+    <textarea id="comment-input" placeholder="What do you think..."></textarea>
+    <button id="add-comment-button" data-gif-id="${gif.id}">Add comment</button>
   </div>
 `;

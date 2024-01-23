@@ -8,8 +8,6 @@ import { toGifSimpleView } from './gif-view.js';
  * @returns {string} The HTML string representing the trending view.
  */
 export const toTrendingView = (gifs) => `
-  <div class="grid">
   <h2> Top Tranding GIFs are here:</h2>
     ${gifs.map(toGifSimpleView).join('\n')}
-  </div>
 `;

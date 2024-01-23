@@ -6,7 +6,7 @@ import { toDetailedGifView } from '../views/gif-view.js';
  */
 export const addComment = (gifID) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
-  const commentInput = document.getElementById('commentInput');
+  const commentInput = document.getElementById('comment-input');
 
   comments.push(commentInput.value);
 
@@ -54,7 +54,7 @@ const deleteComment = (gifID, commentIndex) => {
  */
 export const displayComments = (gifID) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
-  const commentsContainer = document.getElementById('commentsContainer');
+  const commentsContainer = document.getElementById('comments-container');
   commentsContainer.innerHTML = '';
 
   comments.forEach((comment, index) => {

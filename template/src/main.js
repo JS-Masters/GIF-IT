@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Search Bar
     if ((event.target.tagName === 'BUTTON' && event.target.id === 'search-btn') ||
-        (event.target.classList.contains('magnifier')) ||
-        event.target.tagName === 'path') {
+      (event.target.classList.contains('magnifier')) ||
+      event.target.tagName === 'path') {
 
       event.preventDefault();
       const searchInput = q('#search-input');
@@ -123,8 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleFavoriteStatus(event.target.getAttribute('data-gif-id'));
     };
 
+    // GIF me one more - Button
+    if (event.target.id === 'reload-random-button') {
+      loadPage(event.target.getAttribute('data-page'));
+    }
+
     // Add Comment Event
-    if (event.target.id === 'addCommentButton') {
+    if (event.target.id === 'add-comment-button') {
       addComment(event.target.getAttribute('data-gif-id'));
     };
 
