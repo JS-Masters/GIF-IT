@@ -1,6 +1,6 @@
-import { getGifByIdURL, getGifsByIDs, getTrendingURL, RANDOM_GIF_URL, searchByQueryURL } from '../common/constants.js';
+import { getGifByIdURL, getGifsByIDs, getTrendingURL, searchByQueryURL } from './request-urls.js';
 import { addToUploadedStorage } from '../data/uploaded.js';
-import { UPLOAD_URL } from '../common/constants.js';
+import { UPLOAD_URL, RANDOM_GIF_URL } from '../common/constants.js';
 
 
 // НЕ ЗАБРАВЯЙТЕ ALERTS/ERRORS HANDLING при грешки със заявките !!!
