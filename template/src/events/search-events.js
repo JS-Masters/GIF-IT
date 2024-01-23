@@ -8,7 +8,7 @@ import { renderSearchAttributes } from './navigation-events.js';
 // Offset is only of future features
 /**
  * Renders the search results for GIFs.
- * 
+ *
  * @param {string} query - The search query.
  * @param {number} [limit=10] - The maximum number of GIFs to load.
  * @param {number} [offset=0] - The offset for pagination.

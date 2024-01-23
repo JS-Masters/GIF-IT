@@ -65,7 +65,7 @@ export const renderHome = () => {
 
 /**
  * Renders the trending GIFs on the page.
- * 
+ *
  * @param {number} limit - The maximum number of trending GIFs to load.
  * @param {number} offset - The offset for pagination.
  * @returns {Promise<void>} - A promise that resolves when the trending GIFs are rendered.
@@ -78,7 +78,7 @@ export const renderTrending = async (limit = 10, offset = 0) => {
 
 /**
  * Renders the search attributes on the page.
- * 
+ *
  * @param {number} page - The current page number.
  * @returns {void}
  */
@@ -122,7 +122,7 @@ export const renderFavorites = async () => {
 
 /**
  * Renders the uploaded GIFs on the page.
- * 
+ *
  * @returns {Promise<void>} A promise that resolves when the GIFs are rendered.
  */
 const renderUploadedGIFs = async () => {

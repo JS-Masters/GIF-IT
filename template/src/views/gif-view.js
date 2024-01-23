@@ -18,7 +18,7 @@ export const toDetailedGifView = (gif) => `
   <div class="gif-single-view">
     <div class="uploaded-by">
       ${'user' in gif ?
-      `<span>Uploaded by:</span>
+    `<span>Uploaded by:</span>
       <img class="user-avatar" src="${gif.user.avatar_url}" alt="User Avatar"></img>
       <a href="${gif.user.profile_url}" class="username-link" target="_blank">${gif.user.username}</a>`: ''}
     </div>

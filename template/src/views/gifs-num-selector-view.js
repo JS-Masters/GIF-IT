@@ -1,6 +1,6 @@
 /**
  * Generates the HTML for the GIFs number selector view.
- * 
+ *
  * @param {string} page - The current page.
  * @returns {string} The HTML string for the GIFs number selector view.
  */

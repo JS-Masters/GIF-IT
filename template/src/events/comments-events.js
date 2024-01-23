@@ -17,6 +17,12 @@ export const addComment = (gifID) => {
   displayComments(gifID);
 };
 
+
+/**
+ * Edits a comment for a specific GIF.
+ * @param {string} gifID - The ID of the GIF.
+ * @param {number} commentIndex - The index of the comment to be edited.
+ */
 const editComment = (gifID, commentIndex) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
   const newComment = prompt('Edit comment:', comments[commentIndex]);
@@ -28,6 +34,12 @@ const editComment = (gifID, commentIndex) => {
   }
 };
 
+/**
+ * Deletes a comment from the local storage and updates the display of comments.
+ * @param {string} gifID - The ID of the GIF.
+ * @param {number} commentIndex - The index of the comment to be deleted.
+ * @returns {void}
+ */
 const deleteComment = (gifID, commentIndex) => {
   const comments = JSON.parse(localStorage.getItem(`comments_${gifID}`)) || [];
   comments.splice(commentIndex, 1);
@@ -52,7 +64,7 @@ export const displayComments = (gifID) => {
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
-    editButton.className = 'edit-button'; 
+    editButton.className = 'edit-button';
     editButton.addEventListener('click', () => editComment(gifID, index));
 
     const deleteButton = document.createElement('button');
@@ -69,7 +81,7 @@ export const displayComments = (gifID) => {
 
 /**
  * Displays the detailed view of a GIF and its comments.
- * 
+ *
  * @param {Object} gif - The GIF object to display.
  * @returns {void}
  */
