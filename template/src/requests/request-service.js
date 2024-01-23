@@ -1,9 +1,6 @@
-import { getGifByIdURL, getGifsByIDs, getTrendingURL, searchByQueryURL } from './request-urls.js';
+import { getGifByIdURL, getGifsByIDsURL, getTrendingURL, searchByQueryURL } from './request-urls.js';
 import { addToUploadedStorage } from '../data/uploaded.js';
 import { UPLOAD_URL, RANDOM_GIF_URL } from '../common/constants.js';
-
-
-// НЕ ЗАБРАВЯЙТЕ ALERTS/ERRORS HANDLING при грешки със заявките !!!
 
 
 /**
@@ -14,13 +11,19 @@ import { UPLOAD_URL, RANDOM_GIF_URL } from '../common/constants.js';
  */
 export const loadTrendingGifs = async (limit, offset) => {
 
-  const response = await fetch(getTrendingURL(limit, offset));
-  const result = await response.json();
-  return result.data;
+  try {
+    const response = await fetch(getTrendingURL(limit, offset));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    alert(error.message);
+  };
+
 };
 
-
-// НЕ ЗАБРАВЯЙТЕ ALERTS/ERRORS HANDLING при грешки със заявките !!!
 
 /**
  * Loads a GIF by its ID.
@@ -29,10 +32,17 @@ export const loadTrendingGifs = async (limit, offset) => {
  */
 export const loadGifByID = async (id) => {
 
-  const response = await fetch(getGifByIdURL(id));
-  const result = await response.json();
+  try {
+    const response = await fetch(getGifByIdURL(id));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    alert(error.message);
+  };
 
-  return result.data;
 };
 
 
@@ -45,10 +55,18 @@ export const loadGifByID = async (id) => {
  * @returns {Promise<Array>} - A promise that resolves to an array of GIF data.
  */
 export const loadSearchedGifs = async (query, limit, offset) => {
-  const response = await fetch(searchByQueryURL(query, limit, offset));
-  const result = await response.json();
 
-  return result.data;
+  try {
+    const response = await fetch(searchByQueryURL(query, limit, offset));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    alert(error.message);
+  };
+
 };
 
 
@@ -58,9 +76,18 @@ export const loadSearchedGifs = async (query, limit, offset) => {
  * @returns {Promise<Array<object>>} - A promise that resolves to an array of GIF data.
  */
 export const loadGifsByIDs = async (favorites) => {
-  const response = await fetch(getGifsByIDs(favorites));
-  const result = await response.json();
-  return result.data;
+
+  try {
+    const response = await fetch(getGifsByIDsURL(favorites));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    alert(error.message);
+  };
+
 };
 
 /**
@@ -68,10 +95,19 @@ export const loadGifsByIDs = async (favorites) => {
  * @returns {Promise<Object>} A promise that resolves to the data of the random GIF.
  */
 export const loadRandomGif = async () => {
-  const response = await fetch(RANDOM_GIF_URL);
-  const result = await response.json();
 
-  return result.data;
+  try {
+    const response = await fetch(RANDOM_GIF_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+
+  } catch (error) {
+    alert(error.message);
+  };
+
 };
 
 /**
@@ -80,10 +116,19 @@ export const loadRandomGif = async () => {
  * @returns {Promise<Array>} - A promise that resolves to an array of GIF data.
  */
 export const loadUploadedGIFs = async (IDs) => {
-  const response = await fetch(getGifsByIDs(IDs));
-  const result = await response.json();
 
-  return result.data;
+  try {
+    const response = await fetch(getGifsByIDsURL(IDs));
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    return result.data;
+
+  } catch (error) {
+    alert(error.message);
+  };
+
 };
 
 /**
@@ -93,7 +138,15 @@ export const loadUploadedGIFs = async (IDs) => {
  */
 export const uploadGif = async (options) => {
 
-  const response = await fetch(UPLOAD_URL, options);
-  const result = await response.json();
-  addToUploadedStorage(result.data.id);
+  try {
+    const response = await fetch(UPLOAD_URL, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+    const result = await response.json();
+    addToUploadedStorage(result.data.id);
+  } catch (error) {
+    alert(error.message);
+  };
+
 };

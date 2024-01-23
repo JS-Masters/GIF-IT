@@ -33,4 +33,4 @@ export const getGifByIdURL = (id) => `https://api.giphy.com/v1/gifs/${id}?api_ke
  * @param {string} favorites - The IDs of the favorite GIFs.
  * @returns {string} The URL for fetching GIFs by their IDs.
  */
-export const getGifsByIDs = (favorites) => `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${favorites}&rating=g`;
+export const getGifsByIDsURL = (favorites) => `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${favorites}&rating=g`;
