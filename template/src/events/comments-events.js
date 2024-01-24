@@ -60,7 +60,7 @@ export const displayComments = (gifID) => {
   comments.forEach((comment, index) => {
     const commentDiv = document.createElement('div');
     commentDiv.className = 'comment visible-comment';
-    commentDiv.textContent = comment;
+    commentDiv.innerHTML = `<div class="comment-text">${comment}</div>`;
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
@@ -72,8 +72,11 @@ export const displayComments = (gifID) => {
     deleteButton.className = 'delete-button';
     deleteButton.addEventListener('click', () => deleteComment(gifID, index));
 
-    commentDiv.appendChild(editButton);
-    commentDiv.appendChild(deleteButton);
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.className = 'edit-delete-buttons';
+    buttonsDiv.appendChild(editButton);
+    buttonsDiv.appendChild(deleteButton);
+    commentDiv.appendChild(buttonsDiv);
 
     commentsContainer.appendChild(commentDiv);
   });

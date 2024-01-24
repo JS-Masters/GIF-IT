@@ -1,5 +1,5 @@
 import { q, setActiveNav } from './helpers.js';
-import { CONTAINER_SELECTOR, CONTENT_SELECTOR, FAVORITES, HOME, TRENDING, UPLOADED, HOME_SEARCH_BUTTON, HOME_UPLOAD_BUTTON } from '../common/constants.js';
+import { CONTAINER_SELECTOR, CONTENT_SELECTOR, FAVORITES, HOME, TRENDING, UPLOADED, HOME_SEARCH_BUTTON, HOME_UPLOAD_BUTTON, ABOUT } from '../common/constants.js';
 import { loadTrendingGifs, loadGifByID, loadGifsByIDs, loadRandomGif, loadUploadedGIFs } from '../requests/request-service.js';
 import { toTrendingView } from '../views/ternding-view.js';
 import { toGifsNumSelectorView } from '../views/gifs-num-selector-view.js';
@@ -12,6 +12,7 @@ import { toHomeView } from '../views/home-view.js';
 import { toSearchPageView } from '../views/search-page-view.js';
 import { toUploadPageView } from '../views/upload-page-view.js';
 import { toNoFavoritesView } from '../views/no-favorites-view.js';
+import { toAboutView } from '../views/about-view.js';
 
 /**
  * Loads the specified page and performs the necessary actions based on the page.
@@ -37,19 +38,22 @@ export const loadPage = async (page = '') => {
     await renderFavorites();
     break;
 
+  case ABOUT:
+    setActiveNav(ABOUT);
+    renderAbout();
+    break;
+
   case UPLOADED:
-    // setActiveNav(UPLOADED);
     await renderUploadedGIFs();
     break;
 
   case HOME_SEARCH_BUTTON:
-    loadSearchPage();
+    renderSearchPage();
     break;
 
   case HOME_UPLOAD_BUTTON:
-    loadUploadPage();
+    renderUploadPage();
     break;
-
   };
 
 };
@@ -58,7 +62,7 @@ export const loadPage = async (page = '') => {
 /**
  * Renders the home view by updating the innerHTML of the container element.
  */
-export const renderHome = () => {
+const renderHome = () => {
 
   q(CONTAINER_SELECTOR).innerHTML = toHomeView();
 };
@@ -148,7 +152,7 @@ const renderUploadedGIFs = async () => {
  * If there is a dropdown element with the 'trending' class, it renders the search attributes.
  * Finally, it updates the inner HTML of the container element with the search page view.
  */
-export const loadSearchPage = () => {
+const renderSearchPage = () => {
 
   if (!(q('.dropdown'))) {
     renderSearchAttributes('search');
@@ -162,7 +166,15 @@ export const loadSearchPage = () => {
 /**
  * Loads the upload page by updating the innerHTML of the container element.
  */
-const loadUploadPage = () => {
+const renderUploadPage = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadPageView();
 };
+
+/**
+ * Loads the search page by updating the innerHTML of the container element.
+ */
+const renderAbout = () => {
+  q(CONTAINER_SELECTOR).innerHTML = toAboutView();
+};
+
 

@@ -4,6 +4,7 @@ export const HOME = 'home';
 export const TRENDING = 'trending';
 export const UPLOADED = 'uploaded';
 export const FAVORITES = 'favorites';
+export const ABOUT = 'about';
 
 export const CONTAINER_SELECTOR = '#container';
 export const CONTENT_SELECTOR = '#content';
@@ -15,8 +16,6 @@ export const HOME_SEARCH_BUTTON = 'home-search-button';
 export const HOME_UPLOAD_BUTTON = 'home-upload-button';
 
 // Request URLs
-
 export const UPLOAD_URL = `https://upload.giphy.com/v1/gifs?api_key=${API_KEY}`;
-
 export const RANDOM_GIF_URL = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=&rating=g`;
 

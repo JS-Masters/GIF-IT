@@ -5,11 +5,11 @@
 export const toHomeView = () => {
   return `
   <div class="home-buttons">
-  <button id="home-search-button">GIF-IT A SEARCH</button>
-  <button id="home-upload-button">GIF-IT AN UPLOAD</button>
+    <button id="home-search-button">GIF-IT A SEARCH</button>
+    <button id="home-upload-button">GIF-IT AN UPLOAD</button>
   </div>
   <div class="home-info">
-  <p>Your favorite GIFs database application. Here you can:</p>
+    <p>Your favorite GIFs database application. Here you can:</p>
     <ul>
       <li>See the current trending GIFs</li>
       <li>Add and remove GIFs from Favorites</li>
